@@ -1,7 +1,7 @@
 body {
   font-family: "Segoe UI", Tahoma, sans-serif;
-  background: #f4f6f8;
-  color: #222;
+  background: #000000;
+  color: #ffffff;
   display: flex;
   justify-content: center;
   padding: 30px;
@@ -10,10 +10,10 @@ body {
 .container {
   max-width: 500px;
   width: 100%;
-  background: #fff;
+  background: #111111;
   border-radius: 16px;
   padding: 24px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
 }
 
 h1 {
@@ -22,16 +22,17 @@ h1 {
 
 .subtitle {
   text-align: center;
-  color: #666;
+  color: #cccccc;
   margin-bottom: 20px;
 }
 
 .announcement {
-  background: #ffefc2;
-  border-left: 6px solid #f5b100;
+  background: #e6f9ec;
+  border-left: 6px solid #009A44;
   padding: 10px;
   border-radius: 8px;
   margin-bottom: 20px;
+  color: #222;
 }
 
 .login {
@@ -42,28 +43,32 @@ h1 {
 input {
   padding: 8px;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid #444;
   width: 70%;
+  background: #000000;
+  color: #ffffff;
 }
 
 button {
-  background: #007bff;
-  color: white;
+  background: #009A44;
+  color: #ffffff;
   border: none;
   padding: 8px 12px;
   border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background: #0056b3;
+  background: #00b84f;
 }
 
 .bet-card {
-  background: #f9fafb;
+  background: #1a1a1a;
   padding: 15px;
   border-radius: 12px;
   margin-bottom: 20px;
+  color: #ffffff;
 }
 
 .betOption {
@@ -81,17 +86,19 @@ button:hover {
 }
 
 #allBets li {
-  background: #eef2f5;
+  background: #222222;
   margin: 6px 0;
   padding: 8px;
   border-radius: 8px;
+  color: #ffffff;
 }
+
 .adminBtn {
-  background: #dc3545;
+  background: #009A44;
   color: white;
   margin-bottom: 10px;
 }
 
 .adminBtn:hover {
-  background: #b02a37;
+  background: #007a36;
 }
