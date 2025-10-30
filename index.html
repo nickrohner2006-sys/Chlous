@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Uniocai Wetten</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>🏑 Uniocai Wetten</h1>
+      <p class="subtitle">
+        Von <b>Sigi</b> & <b>[Dein Name]</b> – die einzig wahren Quotenmeister
+        😎
+      </p>
+
+      <div class="announcement">
+        <p>
+          <b>Breaking News:</b> Die Quoten werden morgen veröffentlicht!
+          Überlegt euch schon mal, wer den ersten Treffer gegen Thurgau landet
+          🔥
+        </p>
+      </div>
+
+      <div class="login">
+        <input type="text" id="username" placeholder="Dein Name eingeben..." />
+        <button id="loginBtn">Anmelden</button>
+      </div>
+
+      <div id="betSection" class="hidden">
+        <h2>Aktuelle Wette</h2>
+        <div class="bet-card">
+          <p><b>Wer schiesst das erste Tor gegen Thurgau?</b></p>
+          <ul id="options">
+            <li><button class="betOption">Sigi (12.1)</button></li>
+            <li><button class="betOption">Lars (1.3)</button></li>
+            <li><button class="betOption">Chlous (14.0)</button></li>
+            <li><button class="betOption">Yannick Oberli (2.0)</button></li>
+          </ul>
+        </div>
+
+        <div id="result" class="hidden"></div>
+
+        <h3>💬 Alle Tipps</h3>
+        <button id="clearBetsBtn" class="adminBtn hidden">
+          🗑️ Alle Tipps löschen (Admin)
+        </button>
+        <ul id="allBets"></ul>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
