@@ -5,6 +5,7 @@ body {
   display: flex;
   justify-content: center;
   padding: 30px;
+  min-height: 100vh;
 }
 
 .container {
@@ -14,16 +15,21 @@ body {
   border-radius: 16px;
   padding: 24px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 h1 {
   text-align: center;
+  font-size: 2rem;
+  margin-bottom: 10px;
 }
 
 .subtitle {
   text-align: center;
   color: #cccccc;
-  margin-bottom: 20px;
+  font-size: 1rem;
 }
 
 .announcement {
@@ -31,31 +37,35 @@ h1 {
   border-left: 6px solid #009A44;
   padding: 10px;
   border-radius: 8px;
-  margin-bottom: 20px;
   color: #222;
 }
 
 .login {
-  text-align: center;
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 input {
-  padding: 8px;
-  border-radius: 6px;
+  padding: 10px;
+  border-radius: 8px;
   border: 1px solid #444;
-  width: 70%;
+  width: 100%;
+  max-width: 300px;
   background: #000000;
   color: #ffffff;
+  font-size: 1rem;
 }
 
 button {
   background: #009A44;
   color: #ffffff;
   border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
+  padding: 10px 16px;
+  border-radius: 8px;
   cursor: pointer;
+  font-size: 1rem;
   transition: background-color 0.3s ease;
 }
 
@@ -63,42 +73,65 @@ button:hover {
   background: #00b84f;
 }
 
-.bet-card {
-  background: #1a1a1a;
-  padding: 15px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  color: #ffffff;
-}
-
-.betOption {
-  width: 100%;
-  margin-top: 6px;
-}
-
-.hidden {
-  display: none;
-}
-
 #allBets {
   list-style: none;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 #allBets li {
   background: #222222;
-  margin: 6px 0;
-  padding: 8px;
-  border-radius: 8px;
+  padding: 12px;
+  border-radius: 10px;
   color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.95rem;
+}
+
+#allBets li .win {
+  font-weight: bold;
+  color: #00ff88;
 }
 
 .adminBtn {
   background: #009A44;
   color: white;
   margin-bottom: 10px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 1rem;
 }
 
 .adminBtn:hover {
   background: #007a36;
+}
+
+/* 📱 Mobile Optimierung */
+@media (max-width: 600px) {
+  body {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .container {
+    padding: 16px;
+  }
+
+  input, button {
+    width: 100%;
+    max-width: none;
+  }
+
+  #allBets li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
