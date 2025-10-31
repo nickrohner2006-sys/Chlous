@@ -114,12 +114,3 @@ window.addEventListener("load", () => {
   renderBetOptions();
   loadBets();
 });
-
-usernameInput.addEventListener("input", () => {
-  username = usernameInput.value.trim();
-  localStorage.setItem("username", username);
-  checkAdmin();
-  loadBets();
-});
-
-
