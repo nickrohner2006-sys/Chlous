@@ -1,1 +1,40 @@
-<!DOCTYPE html> <html lang="de"> <head> <meta charset="UTF-8"> <title>SVWE U21 WETTBÜRO</title> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <link rel="stylesheet" href="style.css"> </head> <body> <div class="container"> <h1>Platziert eure Wetten!</h1> <p class="subtitle">Wir wissen’s alle: 90 % Glück, 10 % Ahnung – und 100 % Blabla danach am Stammtisch. Prost & viel Erfolg! 🍺 </p> <!-- LOGIN --> <div class="login"> <input type="text" id="username" placeholder="Dein Name" /> <button id="loginBtn">Anmelden</button> </div> <!-- WETT-BEREICH --> <div id="betSection" class="hidden"> <div class="login"> <input type="number" id="betAmount" placeholder="Einsatz in CHF" /> </div> <div class="bet-card"> <p>Wer schiesst das erste Tor für den SVWE?:</p> <div id="betButtons"> <!-- Buttons werden per JS generiert --> </div> </div> <div id="result" class="hidden"></div> <h2>📋 Alle Tipps</h2> <ul id="allBets"></ul> <button id="clearBetsBtn" class="adminBtn hidden">Alle Tipps löschen</button> </div> </div> <script src="script.js"></script> </body> </html>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>SVWE U21 WETTBÜRO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Platziert eure Wetten!</h1>
+    <p class="subtitle">Wir wissen’s alle: 90 % Glück, 10 % Ahnung – und 100 % Blabla danach am Stammtisch. Prost & viel Erfolg! 🍺</p>
+
+    <!-- NAME & EINSATZ -->
+    <div class="login">
+      <input type="text" id="username" placeholder="Dein Name" />
+      <input type="number" id="betAmount" placeholder="Einsatz in CHF" />
+    </div>
+
+    <!-- WETT-BEREICH -->
+    <div id="betSection">
+      <div class="bet-card">
+        <p>Wer schiesst das erste Tor für den SVWE?</p>
+        <div id="betButtons">
+          <!-- Buttons werden per JS generiert -->
+        </div>
+      </div>
+
+      <div id="result" class="hidden"></div>
+
+      <h2>📋 Alle Tipps</h2>
+      <ul id="allBets"></ul>
+
+      <button id="clearBetsBtn" class="adminBtn hidden">Alle Tipps löschen</button>
+    </div>
+
+    <script src="script.js"></script>
+  </div>
+</body>
+</html>
