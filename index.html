@@ -1,56 +1,56 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SVWE U21 WETTEN</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h1>🏑 SVWE U21 WETTEN </h1>
-      <p class="subtitle">
-        Von <b>Sigi</b> & <b>Nick</b> – die einzig wahren Quotenmeister
-        😎
-      </p>
+<head>
+  <meta charset="UTF-8">
+  <title>Chlous Quoten</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🎅 Chlous Quoten</h1>
+    <p class="subtitle">Gib deinen Einsatz ein und sieh, was du gewinnen kannst!</p>
 
-      <div class="announcement">
-        <p>
-          <b>Breaking News:</b> Die Quoten werden morgen veröffentlicht!
-          Überlegt euch schon mal, wer den ersten Treffer gegen Thurgau landet
-          🔥
-        </p>
-      </div>
-
-      <div class="login">
-        <input type="text" id="username" placeholder="Dein Name eingeben..." />
-        <button id="loginBtn">Anmelden</button>
-      </div>
-
-      <div id="betSection" class="hidden">
-        <h2>Aktuelle Wette</h2>
-        <div class="bet-card">
-          <p><b>Wer schiesst das erste Tor gegen Thurgau?</b></p>
-          <ul id="options">
-            <li><button class="betOption">Sigi (12.1)</button></li>
-            <li><button class="betOption">Lars (1.3)</button></li>
-            <li><button class="betOption">Chlous (14.0)</button></li>
-            <li><button class="betOption">Yannick Oberli (2.0)</button></li>
-          </ul>
-        </div>
-
-        <div id="result" class="hidden"></div>
-
-        <h3>💬 Alle Tipps</h3>
-        <button id="clearBetsBtn" class="adminBtn hidden">
-          🗑️ Alle Tipps löschen (Admin)
-        </button>
-        <ul id="allBets"></ul>
-      </div>
+    <div class="login">
+      <input type="number" id="betAmount" placeholder="Einsatz in CHF" />
+      <button onclick="calculateWinnings()">Berechnen</button>
     </div>
 
-    <script src="script.js"></script>
-  </body>
+    <ul id="allBets">
+      <li data-quote="4.66">1. Lars Schneider – Gewinn: <span class="win">–</span></li>
+      <li data-quote="4.78">2. Yannick Oberli – Gewinn: <span class="win">–</span></li>
+      <li data-quote="8.95">3. Fynn Roth – Gewinn: <span class="win">–</span></li>
+      <li data-quote="2.84">4. Cedric Buri – Gewinn: <span class="win">–</span></li>
+      <li data-quote="7.70">5. Cedric Oberli – Gewinn: <span class="win">–</span></li>
+      <li data-quote="6.95">6. Ivan Wittwer – Gewinn: <span class="win">–</span></li>
+      <li data-quote="8.95">7. Michael Gugger – Gewinn: <span class="win">–</span></li>
+      <li data-quote="8.95">8. Naïm Büchi – Gewinn: <span class="win">–</span></li>
+      <li data-quote="38.95">9. Florin Suter – Gewinn: <span class="win">–</span></li>
+      <li data-quote="38.95">10. Noel Muralt – Gewinn: <span class="win">–</span></li>
+      <li data-quote="13.95">11. Elia Dubach – Gewinn: <span class="win">–</span></li>
+      <li data-quote="16.45">12. Dominic Hofer – Gewinn: <span class="win">–</span></li>
+      <li data-quote="18.95">13. Justin Martinjas – Gewinn: <span class="win">–</span></li>
+      <li data-quote="28.95">14. Yannick Hirschi – Gewinn: <span class="win">–</span></li>
+      <li data-quote="23.95">15. Luan Richner – Gewinn: <span class="win">–</span></li>
+      <li data-quote="28.95">16. Elia Dübi – Gewinn: <span class="win">–</span></li>
+    </ul>
+  </div>
+
+  <script>
+    function calculateWinnings() {
+      const amount = parseFloat(document.getElementById("betAmount").value);
+      const bets = document.querySelectorAll("#allBets li");
+
+      bets.forEach(bet => {
+        const quote = parseFloat(bet.getAttribute("data-quote"));
+        const winSpan = bet.querySelector(".win");
+        if (!isNaN(amount)) {
+          const win = (amount * quote).toFixed(2);
+          winSpan.textContent = `${win} CHF`;
+        } else {
+          winSpan.textContent = "–";
+        }
+      });
+    }
+  </script>
+</body>
 </html>
-
-
