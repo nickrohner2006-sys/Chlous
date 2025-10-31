@@ -49,6 +49,10 @@ function renderBetOptions() {
         alert("Bitte gib zuerst deinen Namen ein!");
         return;
       }
+
+      const confirmBet = confirm(`Bist du sicher, dass du auf "${name}" tippen willst?`);
+      if (!confirmBet) return;
+
       const userBet = { name: username, bet: name };
       saveBet(userBet);
       result.innerHTML = `<p>✅ Du hast auf <b>${name}</b> getippt!</p>`;
