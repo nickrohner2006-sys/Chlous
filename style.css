@@ -32,14 +32,6 @@ h1 {
   font-size: 1rem;
 }
 
-.announcement {
-  background: #e6f9ec;
-  border-left: 6px solid #009A44;
-  padding: 10px;
-  border-radius: 8px;
-  color: #222;
-}
-
 .login {
   display: flex;
   flex-direction: column;
@@ -73,6 +65,37 @@ button:hover {
   background: #00b84f;
 }
 
+.bet-card {
+  background: #1a1a1a;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+#betButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.betOption {
+  background: #000000;
+  border: 2px solid #009A44;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: left;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.betOption:hover {
+  background: #003f1f;
+}
+
 #allBets {
   list-style: none;
   padding: 0;
@@ -86,10 +109,6 @@ button:hover {
   padding: 12px;
   border-radius: 10px;
   color: #ffffff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
   font-size: 0.95rem;
 }
 
@@ -101,7 +120,6 @@ button:hover {
 .adminBtn {
   background: #009A44;
   color: white;
-  margin-bottom: 10px;
   padding: 10px 16px;
   border-radius: 8px;
   font-size: 1rem;
@@ -111,7 +129,10 @@ button:hover {
   background: #007a36;
 }
 
-/* 📱 Mobile Optimierung */
+.hidden {
+  display: none;
+}
+
 @media (max-width: 600px) {
   body {
     padding: 20px;
@@ -130,8 +151,7 @@ button:hover {
     max-width: none;
   }
 
-  #allBets li {
-    flex-direction: column;
-    align-items: flex-start;
+  .betOption {
+    font-size: 1rem;
   }
 }
