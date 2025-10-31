@@ -76,7 +76,7 @@ button:hover {
 #betButtons {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   margin-top: 10px;
 }
 
