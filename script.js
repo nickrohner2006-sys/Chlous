@@ -65,8 +65,12 @@ function renderBetOptions() {
 function saveBet(userBet) {
   let bets = JSON.parse(localStorage.getItem("bets") || "[]");
   const existing = bets.find((b) => b.name === userBet.name);
-  if (existing) existing.bet = userBet.bet;
-  else bets.push(userBet);
+  if (existing) {
+    existing.bet = userBet.bet;
+    existing.approved = existing.approved || false;
+  } else {
+    bets.push({ ...userBet, approved: false });
+  }
   localStorage.setItem("bets", JSON.stringify(bets));
 }
 
@@ -78,43 +82,4 @@ function loadBets() {
 
   bets.forEach((b) => {
     const quote = quotes[b.bet] || 0;
-    const win = amount ? (quote * amount).toFixed(2) + " CHF" : "–";
-    const li = document.createElement("li");
-    li.innerHTML = `<strong>${b.name}</strong>: ${b.bet} – Gewinn: <span class="win">${win}</span>`;
-    allBets.appendChild(li);
-  });
-}
-
-// === ADMIN-FUNKTION ===
-function checkAdmin() {
-  if (username.toLowerCase() === "chlous") {
-    clearBetsBtn.classList.remove("hidden");
-  }
-}
-
-clearBetsBtn.addEventListener("click", () => {
-  if (confirm("Willst du wirklich alle Tipps löschen?")) {
-    localStorage.removeItem("bets");
-    loadBets();
-    alert("Alle Tipps wurden gelöscht!");
-  }
-});
-
-// === AUTOMATISCHER LOGIN BEIM NEULADEN ===
-window.addEventListener("load", () => {
-  const savedName = localStorage.getItem("username");
-  if (savedName) {
-    username = savedName;
-    document.querySelector(".login").classList.add("hidden");
-    betSection.classList.remove("hidden");
-    renderBetOptions();
-    loadBets();
-    checkAdmin();
-  }
-});
-
-// === GEWINN BERECHNEN ===
-betAmountInput.addEventListener("input", () => {
-  renderBetOptions();
-  loadBets();
-});
+    const win =
