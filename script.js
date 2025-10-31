@@ -1,11 +1,9 @@
-const loginBtn = document.getElementById("loginBtn");
 const usernameInput = document.getElementById("username");
-const betSection = document.getElementById("betSection");
+const betAmountInput = document.getElementById("betAmount");
+const betButtons = document.getElementById("betButtons");
 const allBets = document.getElementById("allBets");
 const result = document.getElementById("result");
 const clearBetsBtn = document.getElementById("clearBetsBtn");
-const betAmountInput = document.getElementById("betAmount");
-const betButtons = document.getElementById("betButtons");
 
 let username = "";
 
@@ -28,16 +26,12 @@ const quotes = {
   "Elia Dübi": 28.95
 };
 
-// === LOGIN ===
-loginBtn.addEventListener("click", () => {
+// === NAME SPEICHERN BEI EINGABE ===
+usernameInput.addEventListener("input", () => {
   username = usernameInput.value.trim();
-  if (!username) return alert("Bitte gib einen Namen ein!");
   localStorage.setItem("username", username);
-  document.querySelector(".login").classList.add("hidden");
-  betSection.classList.remove("hidden");
-  renderBetOptions();
-  loadBets();
   checkAdmin();
+  loadBets();
 });
 
 // === BUTTONS GENERIEREN ===
@@ -51,6 +45,10 @@ function renderBetOptions() {
     btn.className = "betOption";
     btn.innerHTML = `<strong>${name}</strong> – Quote: ${quote} | Gewinn: ${win}`;
     btn.addEventListener("click", () => {
+      if (!username) {
+        alert("Bitte gib zuerst deinen Namen ein!");
+        return;
+      }
       const userBet = { name: username, bet: name };
       saveBet(userBet);
       result.innerHTML = `<p>✅ Du hast auf <b>${name}</b> getippt!</p>`;
@@ -89,6 +87,8 @@ function loadBets() {
 function checkAdmin() {
   if (username.toLowerCase() === "chlous") {
     clearBetsBtn.classList.remove("hidden");
+  } else {
+    clearBetsBtn.classList.add("hidden");
   }
 }
 
@@ -100,21 +100,17 @@ clearBetsBtn.addEventListener("click", () => {
   }
 });
 
-// === AUTOMATISCHER LOGIN BEIM NEULADEN ===
-window.addEventListener("load", () => {
-  const savedName = localStorage.getItem("username");
-  if (savedName) {
-    username = savedName;
-    document.querySelector(".login").classList.add("hidden");
-    betSection.classList.remove("hidden");
-    renderBetOptions();
-    loadBets();
-    checkAdmin();
-  }
-});
-
 // === GEWINN BERECHNEN BEI EINGABE ===
 betAmountInput.addEventListener("input", () => {
+  renderBetOptions();
+  loadBets();
+});
+
+// === SEITE LADEN ===
+window.addEventListener("load", () => {
+  username = localStorage.getItem("username") || "";
+  usernameInput.value = username;
+  checkAdmin();
   renderBetOptions();
   loadBets();
 });
