@@ -3,56 +3,166 @@
 <head>
   <meta charset="UTF-8">
   <title>Chlous Quoten</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
     <h1>🎅 Chlous Quoten</h1>
-    <p class="subtitle">Gib deinen Einsatz ein und sieh, was du gewinnen kannst!</p>
+    <p class="subtitle">Gib deinen Namen ein, wähle deinen Tipp und berechne deinen Gewinn!</p>
 
+    <!-- LOGIN -->
     <div class="login">
-      <input type="number" id="betAmount" placeholder="Einsatz in CHF" />
-      <button onclick="calculateWinnings()">Berechnen</button>
+      <input type="text" id="username" placeholder="Dein Name" />
+      <button id="loginBtn">Anmelden</button>
     </div>
 
-    <ul id="allBets">
-      <li data-quote="4.66">10 Lars Schneider – Gewinn: <span class="win">–</span></li>
-      <li data-quote="4.78">21 Yannick Oberli – Gewinn: <span class="win">–</span></li>
-      <li data-quote="8.95">7 Fynn Roth – Gewinn: <span class="win">–</span></li>
-      <li data-quote="2.84">6 Cedric Buri – Gewinn: <span class="win">–</span></li>
-      <li data-quote="7.70">15 Cedric Oberli – Gewinn: <span class="win">–</span></li>
-      <li data-quote="6.95">8 Ivan Wittwer – Gewinn: <span class="win">–</span></li>
-      <li data-quote="8.95">24 Michael Gugger – Gewinn: <span class="win">–</span></li>
-      <li data-quote="8.95">4 Naïm Büchi – Gewinn: <span class="win">–</span></li>
-      <li data-quote="38.95">12 Florin Suter – Gewinn: <span class="win">–</span></li>
-      <li data-quote="38.95">11 Noel Muralt – Gewinn: <span class="win">–</span></li>
-      <li data-quote="13.95">17 Elia Dubach – Gewinn: <span class="win">–</span></li>
-      <li data-quote="16.45">5 Dominic Hofer – Gewinn: <span class="win">–</span></li>
-      <li data-quote="18.95">22 Justin Martinjas – Gewinn: <span class="win">–</span></li>
-      <li data-quote="28.95">2 Yannick Hirschi – Gewinn: <span class="win">–</span></li>
-      <li data-quote="23.95">23 Luan Richner – Gewinn: <span class="win">–</span></li>
-      <li data-quote="28.95">17 Elia Dübi – Gewinn: <span class="win">–</span></li>
-      <li data-quote="3.0">Ein anderer Spieler – Gewinn: <span class="win">–</span></li>
-    </ul>
+    <!-- WETT-BEREICH -->
+    <div id="betSection" class="hidden">
+      <div class="login">
+        <input type="number" id="betAmount" placeholder="Einsatz in CHF" />
+        <button onclick="calculateWinnings()">Gewinn berechnen</button>
+      </div>
+
+      <div class="bet-card">
+        <p>Wähle deinen Spieler:</p>
+        <div id="betButtons">
+          <button class="betOption">Lars Schneider</button>
+          <button class="betOption">Yannick Oberli</button>
+          <button class="betOption">Fynn Roth</button>
+          <button class="betOption">Cedric Buri</button>
+          <button class="betOption">Cedric Oberli</button>
+          <button class="betOption">Ivan Wittwer</button>
+          <button class="betOption">Michael Gugger</button>
+          <button class="betOption">Naïm Büchi</button>
+          <button class="betOption">Florin Suter</button>
+          <button class="betOption">Noel Muralt</button>
+          <button class="betOption">Elia Dubach</button>
+          <button class="betOption">Dominic Hofer</button>
+          <button class="betOption">Justin Martinjas</button>
+          <button class="betOption">Yannick Hirschi</button>
+          <button class="betOption">Luan Richner</button>
+          <button class="betOption">Elia Dübi</button>
+        </div>
+      </div>
+
+      <div id="result" class="hidden"></div>
+
+      <h2>📋 Alle Tipps</h2>
+      <ul id="allBets"></ul>
+
+      <button id="clearBetsBtn" class="adminBtn hidden">Alle Tipps löschen</button>
+    </div>
   </div>
 
   <script>
-    function calculateWinnings() {
-      const amount = parseFloat(document.getElementById("betAmount").value);
-      const bets = document.querySelectorAll("#allBets li");
+    const loginBtn = document.getElementById("loginBtn");
+    const usernameInput = document.getElementById("username");
+    const betSection = document.getElementById("betSection");
+    const allBets = document.getElementById("allBets");
+    const betOptions = document.querySelectorAll(".betOption");
+    const result = document.getElementById("result");
+    const clearBetsBtn = document.getElementById("clearBetsBtn");
+    const betAmountInput = document.getElementById("betAmount");
 
-      bets.forEach(bet => {
-        const quote = parseFloat(bet.getAttribute("data-quote"));
-        const winSpan = bet.querySelector(".win");
-        if (!isNaN(amount)) {
-          const win = (amount * quote).toFixed(2);
-          winSpan.textContent = `${win} CHF`;
-        } else {
-          winSpan.textContent = "–";
-        }
+    let username = "";
+
+    const quotes = {
+      "Lars Schneider": 4.66,
+      "Yannick Oberli": 4.78,
+      "Fynn Roth": 8.95,
+      "Cedric Buri": 2.84,
+      "Cedric Oberli": 7.70,
+      "Ivan Wittwer": 6.95,
+      "Michael Gugger": 8.95,
+      "Naïm Büchi": 8.95,
+      "Florin Suter": 38.95,
+      "Noel Muralt": 38.95,
+      "Elia Dubach": 13.95,
+      "Dominic Hofer": 16.45,
+      "Justin Martinjas": 18.95,
+      "Yannick Hirschi": 28.95,
+      "Luan Richner": 23.95,
+      "Elia Dübi": 28.95
+    };
+
+    // === LOGIN ===
+    loginBtn.addEventListener("click", () => {
+      username = usernameInput.value.trim();
+      if (!username) return alert("Bitte gib einen Namen ein!");
+      localStorage.setItem("username", username);
+      document.querySelector(".login").classList.add("hidden");
+      betSection.classList.remove("hidden");
+      loadBets();
+      checkAdmin();
+    });
+
+    // === WETTE ABGEBEN ===
+    betOptions.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const choice = btn.innerText;
+        const userBet = { name: username, bet: choice };
+        saveBet(userBet);
+        result.innerHTML = `<p>✅ Du hast auf <b>${choice}</b> getippt!</p>`;
+        result.classList.remove("hidden");
+        loadBets();
       });
+    });
+
+    // === SPEICHERN DER TIPP-DATEN ===
+    function saveBet(userBet) {
+      let bets = JSON.parse(localStorage.getItem("bets") || "[]");
+      const existing = bets.find((b) => b.name === userBet.name);
+      if (existing) existing.bet = userBet.bet;
+      else bets.push(userBet);
+      localStorage.setItem("bets", JSON.stringify(bets));
+    }
+
+    // === LADEN DER TIPP-LISTE ===
+    function loadBets() {
+      let bets = JSON.parse(localStorage.getItem("bets") || "[]");
+      allBets.innerHTML = "";
+      bets.forEach((b) => {
+        const quote = quotes[b.bet] || 0;
+        const amount = parseFloat(betAmountInput.value) || 0;
+        const win = amount ? (quote * amount).toFixed(2) + " CHF" : "–";
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>${b.name}</strong>: ${b.bet} – Gewinn: <span class="win">${win}</span>`;
+        allBets.appendChild(li);
+      });
+    }
+
+    // === ADMIN-FUNKTION ===
+    function checkAdmin() {
+      if (username.toLowerCase() === "chlous") {
+        clearBetsBtn.classList.remove("hidden");
+      }
+    }
+
+    clearBetsBtn.addEventListener("click", () => {
+      if (confirm("Willst du wirklich alle Tipps löschen?")) {
+        localStorage.removeItem("bets");
+        loadBets();
+        alert("Alle Tipps wurden gelöscht!");
+      }
+    });
+
+    // === AUTOMATISCHER LOGIN BEIM NEULADEN ===
+    window.addEventListener("load", () => {
+      const savedName = localStorage.getItem("username");
+      if (savedName) {
+        username = savedName;
+        document.querySelector(".login").classList.add("hidden");
+        betSection.classList.remove("hidden");
+        loadBets();
+        checkAdmin();
+      }
+    });
+
+    // === GEWINN BERECHNEN ===
+    function calculateWinnings() {
+      loadBets();
     }
   </script>
 </body>
 </html>
-
