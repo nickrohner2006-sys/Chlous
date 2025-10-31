@@ -78,3 +78,9 @@ function loadBets() {
       approveBtn.className = "adminBtn";
       approveBtn.style.marginLeft = "10px";
       approveBtn.onclick = ()
+
+        // Spielerbuttons direkt anzeigen beim Laden der Seite
+document.addEventListener("DOMContentLoaded", () => {
+  renderBetOptions();
+  loadBets();
+});
